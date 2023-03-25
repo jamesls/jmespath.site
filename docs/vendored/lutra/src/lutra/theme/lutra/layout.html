@@ -13,6 +13,11 @@
 {% include "partials/_head_css_variables.html" %}
 {% endblock %}
 
+{% block head_extra %}
+{{ super() }}
+{% include "partials/_fonts.html" %}
+{% endblock %}
+
 {% block html_tag_attrs %} class="no-js"
 {%- endblock %}
 {% block body_tag_attrs %} class="antialiased

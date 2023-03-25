@@ -80,6 +80,44 @@ html {
 // Make things a bit bigger on bigger screens.
 @media (min-width: 97rem) {
   html {
-    font-size: 110%;
+    font-size: 100%;
   }
 }
+
+/*
+  Additional tweaks that I've made that are custom to jmespath.
+  Original was: 84, 50, 67
+*/
+@media (min-width: 84rem) {
+  .sb-article,
+  .match-content-width {
+    width: 52rem;
+  }
+  .sb-footer-content__inner,
+  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content .match-content-width {
+    width: 70rem;
+  }
+}
+
+/*
+ * Original was:
+ *
+ * min-width: 88rem
+ * sb-article: 67rem
+ * sb-page-width 88rem
+ */
+@media (min-width: 88rem) {
+  .sb-footer-content__inner,
+  .drop-secondary-sidebar-for-full-width-content .sb-article,
+  .drop-secondary-sidebar-for-full-width-content .match-content-width {
+    width: 72rem;
+  }
+  /* This is the widge of the inner main content (sets how wide the
+   * sidebars + main content is
+   */
+  .sb-page-width {
+    width: 88rem;
+  }
+}
+

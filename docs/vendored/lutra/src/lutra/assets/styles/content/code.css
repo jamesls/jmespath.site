@@ -25,7 +25,10 @@
 
   /* Code Blocks */
   pre {
-    @apply my-4 p-3 rounded overflow-auto;
+    /* If you updated rounding on corners, also update the
+     * .highlight class below.
+     */
+    @apply my-4 p-3 rounded-lg overflow-auto;
 
     background-color: var(--color_bg-code_block);
     color: var(--color_text-code_block);
@@ -51,7 +54,7 @@
 
   /* All code is always contained in a pre */
   .highlight {
-    @apply rounded w-full;
+    @apply rounded-lg w-full my-2;
     pre {
       @apply m-0;
     }

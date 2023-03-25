@@ -1,5 +1,7 @@
 // Add opacity terms explicitly, to enable ourselves to use those values
 // in theme() as `theme("colors.teal.600/20")`
+const defaultTheme = require('tailwindcss/defaultTheme');
+
 function injectOpacityNested(theme, color) {
   let opacity = theme("opacity");
   let new_color = {};
@@ -84,6 +86,11 @@ module.exports = {
         ...injectOpacitySingle(theme, "white", "#FFFFFF"),
       };
     },
+    extend: {
+      fontFamily: {
+        sans: ['Inter var', ...defaultTheme.fontFamily.sans],
+      },
+    }
   },
   extend: {
     maxWidth: {

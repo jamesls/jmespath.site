@@ -1,26 +1,16 @@
-<div class="jmespath-demo">
-  <div class="row">
-    <div class="panel panel-primary">
-      <div class="panel-body">
-        <div class="col-md-6 col-md-push-6">
-          <h5>Result</h5>
-          <pre class="jmespath-result"></pre>
+<link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.17/dist/tailwind.min.css" rel="stylesheet">
+<div class="container mx-auto">
+    <div class="w-full p-6 border-2 border-gray-300 rounded-lg bg-white shadow-lg">
+        <div class="mb-4">
+            <input class="jmespath-expression w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline"
+                   type="text" placeholder='Expression'
+                   value="{expression}">
         </div>
-        <div class="col-md-6 col-md-pull-6">
-          <form class="jmespath-form">
-            <div class="left-inner-addon">
-              <span class="glyphicon glyphicon-search"></span>
-              <input class="form-control jmespath-expression"
-                     type="text" placeholder="Expression"
-                     value="{expression}" />
-            </div>
-
-            <textarea class="form-control jmespath-input" rows="{num_rows}">
-{jmespath_data}</textarea>
-          </form>
-
+        <div class="flex">
+            <textarea class="jmespath-input w-1/2 px-3 py-2 mr-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline json-textarea" rows="{num_rows}">
+{jmespath_data}
+            </textarea>
+            <textarea class="jmespath-result w-1/2 px-3 py-2 ml-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline json-textarea" rows="{num_rows}"></textarea>
         </div>
-      </div>
     </div>
-  </div>
 </div>

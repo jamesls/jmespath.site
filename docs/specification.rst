@@ -12,7 +12,7 @@ see the :doc:`tutorial` and the :doc:`examples` page.
 In the specification, examples are shown through the use
 of a ``search`` function.  The syntax for this function is::
 
-    search(<jmespath expr>, <JSON document>) -> <return value>
+    search(<jmespath expr>, <JSON document>) -> <result>
 
 For simplicity, the jmespath expression and the JSON document are
 not quoted.  For example::
@@ -46,7 +46,7 @@ Grammar
 
 The grammar is specified using ABNF, as described in `RFC4234`_
 
-::
+.. code-block:: abnf
 
     expression        = sub-expression / index-expression  / comparator-expression
     expression        =/ or-expression / identifier
@@ -170,7 +170,7 @@ Identifiers
 ===========
 
 
-::
+.. code-block:: abnf
 
     identifier        = unquoted-string / quoted-string
     unquoted-string   = (%x41-5A / %x61-7A / %x5F) *(  ; A-Za-z_
@@ -216,7 +216,7 @@ be quoted.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
    search(foo, {"foo": "value"}) -> "value"
    search(bar, {"foo": "value"}) -> null
@@ -253,7 +253,7 @@ The following errors are defined:
 SubExpressions
 ==============
 
-::
+.. code-block:: abnf
 
     sub-expression    = expression "." ( identifier /
                                          multi-select-list /
@@ -282,14 +282,18 @@ Examples
 --------
 
 Given a JSON document: ``{"foo": {"bar": "baz"}}``, and a jmespath expression:
-``foo.bar``, the evaluation process would be::
+``foo.bar``, the evaluation process would be:
+
+.. code-block:: jp_search
 
   left-evaluation = search("foo", {"foo": {"bar": "baz"}}) -> {"bar": "baz"}
   result = search("bar": {"bar": "baz"}) -> "baz"
 
 The final result in this example is ``"baz"``.
 
-Additional examples::
+Additional examples:
+
+.. code-block:: jp_search
 
    search(foo.bar, {"foo": {"bar": "value"}}) -> "value"
    search(foo."bar", {"foo": {"bar": "value"}}) -> "value"
@@ -302,7 +306,7 @@ Additional examples::
 Index Expressions
 =================
 
-::
+.. code-block:: abnf
 
   index-expression  = expression bracket-specifier / bracket-specifier
   bracket-specifier = "[" (number / "*") "]" / "[]"
@@ -332,7 +336,7 @@ Using a "*" character within a ``bracket-specifier`` is discussed below in the
 Slices
 ------
 
-::
+.. code-block:: abnf
 
   slice-expression  = [number] ":" [number] [ ":" [number] ]
 
@@ -378,7 +382,7 @@ Slice expressions adhere to the following rules:
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search([0:4:1], [0, 1, 2, 3]) -> [0, 1, 2, 3]
   search([0:4], [0, 1, 2, 3]) -> [0, 1, 2, 3]
@@ -414,7 +418,7 @@ wildcard expression.  Thus the difference between ``[*]`` and ``[]`` is that
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search([0], ["first", "second", "third"]) -> "first"
   search([-1], ["first", "second", "third"]) -> "third"
@@ -429,7 +433,7 @@ Examples
 Or Expressions
 ==============
 
-::
+.. code-block:: abnf
 
   or-expression     = expression "||" expression
 
@@ -452,7 +456,7 @@ A true value corresponds to any value that is not false.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(foo || bar, {"foo": "foo-value"}) -> "foo-value"
   search(foo || bar, {"bar": "bar-value"}) -> "bar-value"
@@ -468,7 +472,7 @@ Examples
 And Expressions
 ===============
 
-::
+.. code-block:: abnf
 
   and-expression  = expression "&&" expression
 
@@ -505,7 +509,7 @@ This is the standard truth table for a
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(True && False, {"True": true, "False": false}) -> false
   search(Number && EmptyList, {"Number": 5, EmptyList: []}) -> []
@@ -513,13 +517,12 @@ Examples
          {"foo": [{"a": 1, "b": 2}, {"a": 1, "b": 3}]}) -> [{"a": 1, "b": 2}]
 
 
-
 .. _parenexpressions:
 
 Paren Expressions
 =================
 
-::
+.. code-block:: abnf
 
   paren-expression  = "(" expression ")"
 
@@ -529,7 +532,7 @@ an expression, e.g. ``(a || b) && c``.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(foo[?(a == `1` || b ==`2`) && c == `5`],
          {"foo": [{"a": 1, "b": 2, "c": 3}, {"a": 3, "b": 4}]}) -> []
@@ -540,7 +543,7 @@ Examples
 Not Expressions
 ===============
 
-::
+.. code-block:: abnf
 
     not-expression    = "!" expression
 
@@ -552,7 +555,7 @@ results in a truth-like value, a ``not-expression`` will change this value to
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(!True, {"True": true}) -> false
   search(!False, {"False": false}) -> true
@@ -560,14 +563,12 @@ Examples
   search(!EmptyList, {"EmptyList": []}) -> true
 
 
-
-
 .. _multiselectlist:
 
 MultiSelect List
 ================
 
-::
+.. code-block:: abnf
 
     multi-select-list = "[" ( expression *( "," expression ) "]"
 
@@ -585,7 +586,7 @@ expression ``[expr-1,expr-2,...,expr-n]``, the evaluated expression will return
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search([foo,bar], {"foo": "a", "bar": "b", "baz": "c"}) -> ["a", "b"]
   search([foo,bar[0]], {"foo": "a", "bar": ["b"], "baz": "c"}) -> ["a", "b"]
@@ -598,7 +599,7 @@ Examples
 MultiSelect Hash
 ================
 
-::
+.. code-block:: abnf
 
     multi-select-hash = "{" ( keyval-expr *( "," keyval-expr ) "}"
     keyval-expr       = identifier ":" expression
@@ -606,7 +607,9 @@ MultiSelect Hash
 A ``multi-select-hash`` expression is similar to a ``multi-select-list``
 expression, except that a hash is created instead of a list.  A
 ``multi-select-hash`` expression also requires key names to be provided, as
-specified in the ``keyval-expr`` rule.  Given the following rule::
+specified in the ``keyval-expr`` rule.  Given the following rule:
+
+.. code-block:: abnf
 
     keyval-expr       = identifier ":" expression
 
@@ -634,7 +637,7 @@ The final result will be: ``{"foo": "one-two", "bar": "bar"}``.
 
 Additional examples:
 
-::
+.. code-block:: jp_search
 
   search({foo: foo, bar: bar}, {"foo": "a", "bar": "b", "baz": "c"})
                 -> {"foo": "a", "bar": "b"}
@@ -651,7 +654,7 @@ Additional examples:
 Wildcard Expressions
 ====================
 
-::
+.. code-block:: abnf
 
     expression        =/ "*"
     bracket-specifier = "[" "*" "]"
@@ -695,7 +698,7 @@ to return the hash values in any specific order.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search([*].foo, [{"foo": 1}, {"foo": 2}, {"foo": 3}]) -> [1, 2, 3]
   search([*].foo, [{"foo": 1}, {"foo": 2}, {"bar": 3}]) -> [1, 2]
@@ -705,7 +708,7 @@ Examples
 Literal Expressions
 ===================
 
-::
+.. code-block:: abnf
 
     literal           = "`" json-value "`"
 
@@ -723,7 +726,7 @@ a JSON parser.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(`"foo"`, "anything") -> "foo"
   search(`"foo\`bar"`, "anything") -> "foo`bar"
@@ -736,7 +739,7 @@ Examples
 Raw String Literals
 ===================
 
-::
+.. code-block:: abnf
 
   raw-string        = "'" *raw-string-char "'"
   raw-string-char   = (%x20-26 / %x28-5B / %x5D-10FFFF) / preserved-escape /
@@ -748,7 +751,9 @@ A raw string is an expression that allows for a literal string value to be
 specified.  The result of evaluating the raw string literal expression is the
 literal string value.  It is a simpler form of a literal expression that is
 special cased for strings.  For example, the following expressions both
-evaluate to the same value: "foo"::
+evaluate to the same value: "foo":
+
+.. code-block:: jp_search
 
     search(`"foo"`, "") -> "foo"
     search('foo', "") -> "foo"
@@ -764,7 +769,7 @@ additional processing that JSON strings supports including:
 * Not expanding tab characters or any other escape sequences documented
   in RFC 4627 section 2.5.
 
-::
+.. code-block:: jp_search
 
   search('foo', "") -> "foo"
   search(' bar ', "") -> " bar "
@@ -779,7 +784,7 @@ additional processing that JSON strings supports including:
 Filter Expressions
 ==================
 
-::
+.. code-block:: abnf
 
   list-filter-expr      = "[?" expression "]"
   comparator-expression = expression comparator expression
@@ -830,11 +835,13 @@ Ordering Operators
 Ordering operators ``>, >=, <, <=`` are **only** valid for numbers.
 Evaluating any other type with a comparison operator will yield a ``null``
 value, which will result in the element being excluded from the result list.
-For example, given::
+For example, given:
 
-    search('foo[?a<b]', {"foo": [{"a": "char", "b": "char"},
-                                 {"a": 2, "b": 1},
-                                 {"a": 1, "b": 2}]})
+.. code-block:: jp_search
+
+    search(foo[?a<b], {"foo": [{"a": "char", "b": "char"},
+                               {"a": 2, "b": 1},
+                               {"a": 1, "b": 2}]})
 
 The three elements in the foo list are evaluated against ``a < b``.  The first
 element resolves to the comparison ``"char" < "bar"``, and because these types
@@ -849,7 +856,7 @@ is ``[{"a": 1, "b": 2}]``.
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
   search(foo[?bar==`10`], {"foo": [{"bar": 1}, {"bar": 10}]}) -> [{"bar": 10}]
   search([?bar==`10`], [{"bar": 1}, {"bar": 10}]}) -> [{"bar": 10}]
@@ -864,7 +871,7 @@ Examples
 Function Expressions
 =====================
 
-::
+.. code-block:: abnf
 
     function-expression = unquoted-string  (
                             no-args  /
@@ -961,7 +968,9 @@ Function expressions are also allowed as the child element of a sub expression.
 This allows functions to be used with projections, which can enable functions
 to be applied to every element in a projection.  For example, given the input
 data of ``["1", "2", "3", "notanumber", true]``, the following expression can
-be used to convert (and filter) all elements to numbers::
+be used to convert (and filter) all elements to numbers:
+
+.. code-block:: jp_search
 
     search([].to_number(@), `["1", "2", "3", "notanumber", true]`) -> [1, 2, 3]
 
@@ -1052,7 +1061,9 @@ Below is a worked example.  Given::
 
 Evaluating ``abs(foo)`` works as follows:
 
-1. Evaluate the input argument against the current data::
+1. Evaluate the input argument against the current data:
+
+.. code-block:: jp_search
 
      search(foo, {"foo": -1, "bar": "2"}) -> -1
 
@@ -1069,7 +1080,9 @@ Evaluating ``abs(foo)`` works as follows:
 
 Below is the same steps for evaluating ``abs(bar)``:
 
-1. Evaluate the input argument against the current data::
+1. Evaluate the input argument against the current data:
+
+.. code-block:: jp_search
 
      search(bar, {"foo": -1, "bar": "2"}) -> "2"
 
@@ -1080,20 +1093,26 @@ Below is the same steps for evaluating ``abs(bar)``:
 
 As a final example, here is the steps for evaluating ``abs(to_number(bar))``:
 
-1. Evaluate the input argument against the current data::
+1. Evaluate the input argument against the current data:
+
+.. code-block:: jp_search
 
     search(to_number(bar), {"foo": -1, "bar": "2"})
 
 2. In order to evaluate the above expression, we need to evaluate
-   ``to_number(bar)``::
+   ``to_number(bar)``:
+
+.. code-block:: jp_search
 
     search(bar, {"foo": -1, "bar": "2"}) -> "2"
     # Validate "2" passes the type check for to_number, which it does.
     to_number("2") -> 2
 
-   Note that `to_number`_ is defined below.
+Note that `to_number`_ is defined below.
 
-3. Now we can evaluate the original expression::
+3. Now we can evaluate the original expression:
+
+.. code-block:: jp_search
 
     search(to_number(bar), {"foo": -1, "bar": "2"}) -> 2
 
@@ -2012,7 +2031,7 @@ If you would like a specific order, consider using the
 Pipe Expressions
 ================
 
-::
+.. code-block:: abnf
 
     pipe-expression  = expression "|" expression
 
@@ -2060,7 +2079,7 @@ can use a ``pipe-expression``::
 Examples
 --------
 
-::
+.. code-block:: jp_search
 
    search(foo | bar, {"foo": {"bar": "baz"}}) -> "baz"
    search(foo[*].bar | [0], {

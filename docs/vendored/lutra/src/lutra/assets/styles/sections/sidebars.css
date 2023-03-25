@@ -85,7 +85,6 @@
 }
 
 .site-navigation-container {
-  @apply text-sm;
   .sidebar-scroll {
     @apply pt-12 pb-16;
   }

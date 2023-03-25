@@ -19,6 +19,7 @@ from pygments.token import (
     Whitespace,
 )
 
+#dfe8f1
 _light_colors = {
     "base00": "#f8f8f8",
     "base01": "#f0f0f1",
@@ -36,15 +37,18 @@ _light_colors = {
     "blue": "#4078f2",
     "purple": "#a626a4",
     "extra": "#986801",
+    'grey': '#94A3B8',
 }
 
 _dark_colors = {
-    "base00": "#1d1f21",
+    # Swapped out bg color to be more purple.
+    "base00": "#1a2433",
     "base01": "#1f2225",
     "base02": "#2c343a",
     "base03": "#36444f",
     "base04": "#4c6272",
-    "base05": "#90afc0",
+    # Swapped out fg text to be brighter white.
+    "base05": "#dfe8f1",
     "base06": "#c2d9eb",
     "base07": "#e4ecf4",
     "red": "#e06c75",
@@ -52,9 +56,11 @@ _dark_colors = {
     "yellow": "#e5c07b",
     "green": "#98c379",
     "cyan": "#56b6c2",
+    # 	7DD3FC
     "blue": "#61afef",
     "purple": "#c678dd",
     "extra": "#be5046",
+    'grey': '#94A3B8',
 }
 
 
@@ -75,6 +81,7 @@ def _styles_from_colors(colors: Dict[str, str]) -> Dict[Any, str]:
     blue = colors["blue"]
     purple = colors["purple"]
     extra = colors["extra"]  # noqa
+    grey = colors["grey"]
 
     return {
         Text: base05,
@@ -90,9 +97,9 @@ def _styles_from_colors(colors: Dict[str, str]) -> Dict[Any, str]:
         Keyword.Type: "",
         Name: "",
         Name.Attribute: "",
-        Name.Builtin: blue,
+        Name.Builtin: red,
         Name.Builtin.Pseudo: purple,
-        Name.Class: yellow,
+        Name.Class: blue,
         Name.Constant: cyan,
         Name.Decorator: blue,
         Name.Entity: "",
@@ -111,19 +118,19 @@ def _styles_from_colors(colors: Dict[str, str]) -> Dict[Any, str]:
         Name.Variable.Magic: blue,
         Literal: "",
         Literal.Date: "",
-        String: green,
-        String.Affix: f"italic {green}",
+        String: blue,
+        String.Affix: f"italic {blue}",
         String.Backtick: f"bold {purple}",
         String.Char: "",
         String.Delimiter: "",
-        String.Doc: f"italic {green}",
-        String.Double: green,
+        String.Doc: f"italic {blue}",
+        String.Double: blue,
         String.Escape: "",
         String.Heredoc: "",
         String.Interpol: purple,
         String.Other: "",
         String.Regex: "",
-        String.Single: green,
+        String.Single: blue,
         String.Symbol: "",
         Number: cyan,
         Number.Bin: cyan,
@@ -132,7 +139,7 @@ def _styles_from_colors(colors: Dict[str, str]) -> Dict[Any, str]:
         Number.Integer: cyan,
         Number.Integer.Long: cyan,
         Number.Oct: cyan,
-        Operator: yellow,
+        Operator: grey,
         Operator.Word: yellow,
         Punctuation: "",
         Comment: f"italic {base04}",

@@ -11,8 +11,11 @@ publish:
 clean:
 	$(MAKE) -C docs/ clean
 
-html:
+html: build-theme
 	$(MAKE) -C docs/ html
+
+build-theme:
+	cd docs/vendored/lutra/ && pip install -e .
 
 doclint:
 	find . -type f -name "*.rst" | xargs doc8

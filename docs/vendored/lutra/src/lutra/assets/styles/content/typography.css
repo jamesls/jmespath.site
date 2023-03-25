@@ -1,4 +1,7 @@
 .prose {
+
+  font-size: 0.9rem;
+
   p {
     @apply my-3;
   }
@@ -11,7 +14,7 @@
   h5,
   h6 {
     @apply leading-tight font-semibold;
-    @apply rounded-lg mt-0 mb-2 -mx-2 px-2;
+    @apply rounded-lg mt-4 mb-6 -mx-2 px-2;
     + p {
       margin-top: 0;
     }
