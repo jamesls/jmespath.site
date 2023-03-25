@@ -1,0 +1,49 @@
+{% if READTHEDOCS or versions -%}
+<div class="version-selector flex items-center gap-2">
+  {% if versions %}
+  {#
+  {% if current_version is undefined -%}
+  {{ warning("Current version is not set. The version selector will not render correctly.") }}
+  {%- endif -%}
+  <div class="lutra-versions">
+    <button class="lutra-version__current" aria-label="Select version">{{ versions[current_version][0] }}</button>
+    <ul class="lutra-version-list">
+      {% for version in versions %}
+      <li class="lutra-version"><a href="{{ v_pathto(pagename, version) }}">{{ version }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+  #}
+  {% elif READTHEDOCS %}
+  <div class="lutra-readthedocs-versions rst-versions" data-toggle="rst-versions" role="note" aria-label="{{ _('Versions') }}" tabindex="0">
+    <span class="rst-current-version" data-toggle="rst-current-version">
+      {{ current_version }}
+    </span>
+    <div class="rst-other-versions">
+      <dl>
+        <dt>{{ _('Versions') }}</dt>
+        {% for slug, url in versions %}
+          <dd><a href="{{ url }}">{{ slug }}</a></dd>
+        {% endfor %}
+      </dl>
+      <dl>
+        <dt>{{ _('Downloads') }}</dt>
+        {% for type, url in downloads %}
+          <dd><a href="{{ url }}">{{ type }}</a></dd>
+        {% endfor %}
+      </dl>
+      <dl>
+        {# Translators: The phrase "Read the Docs" is not translated #}
+        <dt>{{ _('On Read the Docs') }}</dt>
+          <dd>
+            <a href="//{{ PRODUCTION_DOMAIN }}/projects/{{ slug }}/?fromdocs={{ slug }}">{{ _('Project Home') }}</a>
+          </dd>
+          <dd>
+            <a href="//{{ PRODUCTION_DOMAIN }}/builds/{{ slug }}/?fromdocs={{ slug }}">{{ _('Builds') }}</a>
+          </dd>
+      </dl>
+    </div>
+  </div>
+  {% endif %}
+</div>
+{% endif -%}

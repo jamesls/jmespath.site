@@ -1,8 +1,8 @@
 .. _spec:
 
-======================
-JMESPath Specification
-======================
+=============
+Specification
+=============
 
 This document describes the specification for jmespath.
 

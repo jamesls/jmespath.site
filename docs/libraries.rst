@@ -1,6 +1,6 @@
-==================
-JMESPath Libraries
-==================
+=========
+Libraries
+=========
 
 The JMESPath specification is implemented in various languages.  Each list
 below shows JMESPath libraries as well as the compliance level.  The compliance

@@ -1,6 +1,6 @@
-=========================
-JMESPath Compliance Tests
-=========================
+================
+Compliance Tests
+================
 
 The JMESPath compliance test suite is a way to ensure parity amongst libraries.
 It's also way an easy to get started implementing JMESPath in your language of

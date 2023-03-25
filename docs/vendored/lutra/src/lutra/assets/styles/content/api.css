@@ -1,0 +1,22 @@
+.prose {
+  dl[class]:not(.option-list):not(.field-list):not(.footnote):not(
+      .glossary
+    ):not(.simple) {
+    > dt {
+      @apply mt-2 font-mono;
+      color: var(--color_text-api-signature);
+
+      /* &[id] {
+        padding-left: 2.5rem;
+        text-indent: -2.5rem;
+      } */
+      &:target {
+        @apply -mx-2 px-2 rounded;
+      }
+    }
+  }
+
+  .descname {
+    @apply font-bold;
+  }
+}

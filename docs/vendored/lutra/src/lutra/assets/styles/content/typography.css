@@ -1,0 +1,94 @@
+.prose {
+  p {
+    @apply my-3;
+  }
+
+  /* Headings */
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply leading-tight font-semibold;
+    @apply rounded-lg mt-0 mb-2 -mx-2 px-2;
+    + p {
+      margin-top: 0;
+    }
+  }
+
+  h1 {
+    font-size: 2.5em;
+  }
+  h2 {
+    @apply mt-6;
+    font-size: 2em;
+  }
+  h3 {
+    font-size: 1.5em;
+  }
+  h4 {
+    font-size: 1.25em;
+  }
+  h5 {
+    font-size: 1.125em;
+  }
+  h6 {
+    font-size: 1em;
+  }
+  small {
+    @apply opacity-75;
+    font-size: 80%;
+  }
+
+  /* This is used for "Footnotes" header and the `rubric` directive. */
+  .rubric {
+    @apply rounded-lg leading-tight font-bold mt-4 py-2;
+    font-size: 1.125em;
+  }
+
+  /* Things that Sphinx/docutils deem problematic (eg: broken links) */
+  .problematic {
+    color: var(--color_text-problematic);
+  }
+
+  /* Links */
+  a[href] {
+    @apply cursor-pointer border-b-2;
+    color: var(--color_text-link);
+
+    border-bottom-color: var(--color_text-link_underline);
+
+    &:visited {
+      color: var(--color_text-link--visited);
+      border-bottom-color: var(--color_text-link_underline--visited);
+      &:hover {
+        color: var(--color_text-link--visited--hover);
+        border-bottom-color: var(--color_text-link_underline--visited--hover);
+      }
+    }
+
+    &.toc-backref:hover,
+    &:hover,
+    &:focus-visible {
+      @apply border-b-2;
+      color: var(--color_text-link--hover);
+      border-bottom-color: var(--color_text-link_underline--hover);
+    }
+    &:focus-visible {
+      @apply border-b-0;
+    }
+
+    &.toc-backref {
+      @apply border-b-0;
+      &:visited {
+        color: var(--color_text);
+      }
+    }
+  }
+
+  /* Centered text */
+  .centered {
+    text-align: center;
+  }
+}

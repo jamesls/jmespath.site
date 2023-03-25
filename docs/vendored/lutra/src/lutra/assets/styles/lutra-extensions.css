@@ -1,0 +1,157 @@
+/*
+  sphinx-design
+*/
+body {
+  --sd-color-card-border: var(--border-site_sidebar);
+  --sd-color-card-border-hover: var(--color_text-link_underline--hover);
+  --sd-color-shadow: var(--border-site_sidebar);
+}
+
+.dark body {
+  --sd-color-shadow: rgb(1, 4, 9);
+}
+
+/* Scaling on hover is a bad aesthetic -- get rid of it. */
+.sd-card-hover:hover {
+  transform: none;
+}
+
+/* Deal with the conflict of a[href] styling and how sphinx-design uses it */
+a[href].sd-stretched-link {
+  border-bottom: none;
+}
+
+/* Remove the not-necessary padding */
+.sd-container,
+.sd-container-fluid,
+.sd-container-lg,
+.sd-container-md,
+.sd-container-sm,
+.sd-container-xl {
+  @apply px-0;
+}
+
+/*
+  sphinx-inline-tabs
+*/
+.tab-content {
+  div[class^="highlight-"]:first-child {
+    @apply mt-0;
+    pre {
+      @apply rounded-t-none;
+    }
+  }
+}
+
+html:not(.dark) {
+  --tabs--label-text: theme("colors.gray.600");
+  --tabs--label-text--hover: theme("colors.gray.600");
+  --tabs--label-text--active: var(--theme-primary);
+  --tabs--label-text--active--hover: var(--theme-primary);
+  --tabs--label-background: transparent;
+  --tabs--label-background--hover: transparent;
+  --tabs--label-background--active: transparent;
+  --tabs--label-background--active--hover: transparent;
+  --tabs--label-border: transparent;
+  --tabs--label-border--hover: theme("colors.gray.300");
+  --tabs--label-border--active: var(--theme-primary);
+  --tabs--label-border--active--hover: var(--theme-primary);
+  --tabs--padding-x: 0.25em;
+  --tabs--margin-x: 1em;
+  --tabs--border: theme("colors.gray.200");
+}
+html.dark {
+  --tabs--label-text: theme("colors.gray.400");
+  --tabs--label-text--hover: theme("colors.gray.400");
+  --tabs--label-text--active: var(--theme-primary_dark);
+  --tabs--label-text--active--hover: var(--theme-primary_dark);
+  --tabs--label-background: transparent;
+  --tabs--label-background--hover: transparent;
+  --tabs--label-background--active: transparent;
+  --tabs--label-background--active--hover: transparent;
+  --tabs--label-border: transparent;
+  --tabs--label-border--hover: theme("colors.gray.600");
+  --tabs--label-border--active: var(--theme-primary_dark);
+  --tabs--label-border--active--hover: var(--theme-primary_dark);
+  --tabs--padding-x: 0.25em;
+  --tabs--margin-x: 1em;
+  --tabs--border: theme("colors.gray.800");
+}
+
+/*
+  ReadTheDocs version selector
+*/
+/* Clean up after the injected CSS */
+div.lutra-readthedocs-versions {
+  width: unset;
+  color: inherit;
+  background: unset;
+  font-family: inherit;
+
+  > .rst-current-version {
+    @apply py-3 px-2;
+    font-size: unset;
+    color: inherit;
+    background: unset;
+    white-space: nowrap;
+
+    .fa {
+      color: inherit;
+      float: none;
+    }
+  }
+  .rst-other-versions {
+    @apply p-0;
+  }
+  .injected {
+    .rst-versions {
+      position: unset;
+    }
+    .rst-other-versions {
+      @apply p-4;
+    }
+    .rst-current-version .fa-caret-down {
+      @apply hidden;
+    }
+  }
+}
+
+/* Dropdown container */
+div.lutra-readthedocs-versions {
+  @apply -mx-1 block relative;
+}
+
+/* Dropdown content */
+.injected {
+  @apply hidden absolute;
+
+  min-width: 15rem;
+  z-index: 1;
+}
+
+div.lutra-readthedocs-versions {
+  &:hover,
+  &:focus-within {
+    background-color: #272525;
+    color: white;
+
+    .rst-current-version,
+    .rst-other-versions,
+    .injected {
+      @apply block;
+    }
+    .injected {
+      width: 15rem;
+      /* transform: translateX(-8rem); */
+    }
+  }
+}
+
+/* HACK: Make it clear where the search happens */
+.rst-badge > .rst-other-versions > dl {
+  dd input[type="text"] {
+    @apply p-1 rounded-sm;
+    color: black;
+    background-color: white;
+  }
+}

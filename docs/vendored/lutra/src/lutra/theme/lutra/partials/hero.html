@@ -1,0 +1,59 @@
+{#-
+  This was inspired by the following:
+  https://vitepress.vuejs.org/guide/theme-home-page.html#hero-section
+-#}
+<div class="lutra-hero">
+  <div class="sb-page-width">
+    <div class="lutra-hero-text">
+      <h1 class="lutra-hero-heading">
+        {% if "brand" in theme_hero -%}
+        <span class="lutra-hero-brand">{{ theme_hero.brand }}</span>
+        {%- endif %}
+        {% if "text" in theme_hero -%}
+        <span class="lutra-hero-text">{{ theme_hero.text }}</span>
+        {%- endif %}
+      </h1>
+      {% if "tagline" in theme_hero -%}
+        <p class="lutra-hero-tagline">{{ theme_hero.tagline }}</p>
+      {%- endif %}
+      {% if "actions" in theme_hero -%}
+      <div class="lutra-hero-actions">
+      {% for action in theme_hero.actions -%}
+        <div class="action">
+          <a class="lutra-hero-button lutra-hero-button-{{action.style}}"
+            {%- if "href" in action %} href="{{action.href}}" target="_blank"
+            {%- elif "doc" in action %} href="{{ pathto(action.doc) }}"
+            {% endif -%}>
+            {{action.text}}
+          </a>
+        </div>
+        {% endfor %}
+      </div>
+      {%- endif %}
+    </div>
+    {%- if "features" in theme_hero %}
+    {%- set length = theme_hero.features|length %}
+    {%- if length == 2 -%}
+      {%- set grid = "grid-cols-1 sm:grid-cols-2" -%}
+    {%- elif length == 3 -%}
+      {%- set grid = "grid-cols-1 lg:grid-cols-3" -%}
+    {%- elif length % 3 == 0 -%}
+      {%- set grid = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-3" -%}
+    {%- elif length % 4 == 0 -%}
+      {%- set grid = "grid-cols-1 sm:grid-cols-2 lg:grid-cols-4" -%}
+    {%- elif length % 2 == 0 -%}
+      {%- set grid = "grid-cols-1 sm:grid-cols-2" -%}
+    {%- endif -%}
+    <div class="lutra-hero-features">
+      <div class="grid gap-4 {{ grid }}">
+        {% for feature in theme_hero.features -%}
+          <div class="lutra-hero-feature">
+            <h2 class="title">{{ feature.title }}</h2>
+            <p class="details">{{ feature.details }}</p>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+    {% endif %}
+  </div>
+</div>

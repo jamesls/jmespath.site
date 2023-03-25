@@ -1,0 +1,71 @@
+{% extends "!basic-ng/page.html" %}
+
+<!-- Allow injecting a custom "hero" section. -->
+{% block container %}
+{%- if meta and meta["hero"] -%}
+  {% if theme_hero %}
+    {% include "partials/hero.html" with context %}
+  {% else %}
+    {{ warning("Found 'hero' in page metadata, but no hero attributes in conf.py") }}
+  {%- endif -%}
+{%- endif -%}
+
+{{ super() }}
+{% endblock container %}
+
+
+<!-- Hide article header, if we're on the home page. -->
+{% block content %}
+<div class="sb-article-container">
+  {%- if pagename != "index" -%}
+  <header class="sb-header-article">
+    {% include "sections/header-article.html" %}
+  </header>
+  {%- endif -%}
+  <article class="sb-article" role="main">
+    {% include "sections/article.html" %}
+  </article>
+  <footer class="sb-footer-article">
+    {% include "sections/footer-article.html" %}
+  </footer>
+</div>
+{% endblock content %}
+
+<!-- Hide primary sidebar on full-width and page layouts. -->
+{% block sidebar_primary %}
+  {%- if not (meta and meta["layout"] == "page") -%}
+    {{ super() }}
+  {%- endif -%}
+{% endblock %}
+
+{% block body %}
+<script>
+  // Eager dark-mode handling.
+  const currentTheme = localStorage.getItem("theme") || "auto";
+  const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+
+  document.body.dataset.theme = currentTheme;
+  if ((currentTheme === "auto" && prefersDark) || currentTheme === "dark") {
+    document.documentElement.classList.add("dark");
+  }
+  // Eager sidebar collapse
+  if ((localStorage.getItem("collapsed") || "false") === "true") {
+    document.body.classList.add("collapsed-site-navigation");
+  }
+</script>
+<a class="skip-to-content" href="#lutra-main-content">
+  {%- trans -%}
+  Skip to content
+  {%- endtrans -%}
+</a>
+{% include "partials/icons.html" %}
+{{ super() }}
+{% endblock body %}
+
+{% block footer %}
+<footer class="sb-footer">
+  <div class="sb-footer__inner sb-page-width">
+    {% include "sections/footer.html" %}
+  </div>
+</footer>
+{% endblock footer %}

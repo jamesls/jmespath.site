@@ -1,0 +1,40 @@
+.prose {
+  /* Figures */
+  figure,
+  .figure {
+    @apply m-0 p-1 rounded;
+    > img {
+      @apply inline-block;
+    }
+    :last-child {
+      @apply mb-0;
+    }
+  }
+
+  /* Inline images */
+  p img {
+    @apply align-middle inline-block;
+  }
+
+  /* Images with links */
+  a > img:hover {
+    @apply ring;
+  }
+
+  /* Alignment */
+  .align-left {
+    @apply float-left clear-left m-4 ml-0;
+  }
+  .align-right {
+    @apply float-right clear-right m-4 mr-0;
+  }
+  .align-default,
+  .align-center {
+    @apply block text-center mx-auto;
+  }
+
+  table.align-default {
+    display: table;
+    text-align: initial;
+  }
+}

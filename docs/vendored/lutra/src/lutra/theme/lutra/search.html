@@ -1,0 +1,10 @@
+{% extends "basic-ng/search.html" %} {% block before_results %}
+<div id="lutra-main-content" class="prose">
+  {{ super() }}
+  {% include "partials/search-form.html" %}
+  {%- endblock before_results %}
+
+  {# Close the .prose div #}
+  {% block after_results -%}
+</div>
+{%- endblock after_results %}

@@ -1,0 +1,23 @@
+{% extends "!basic-ng/layout.html" %}
+
+{% block head_title -%}
+  {%- if pagename == "index" -%}
+    {{ _("Home") }} - {{ docstitle|striptags|e }}
+  {%- else -%}
+    {{ title|striptags|e }} - {{ docstitle|striptags|e }}
+  {%- endif -%}
+{%- endblock %}
+
+{% block head_stylesheets %}
+{{ super() }}
+{% include "partials/_head_css_variables.html" %}
+{% endblock %}
+
+{% block html_tag_attrs %} class="no-js"
+{%- endblock %}
+{% block body_tag_attrs %} class="antialiased
+  {%- if meta and "no-toc" in meta %} drop-secondary-sidebar-for-full-width-content limit-prose-width{% endif -%}
+  {%- if theme_sticky_tabs %} sticky-secondary-header{% endif -%}
+  {% if not parents %} has-no-parents{% endif -%}
+  "
+{%- endblock %}

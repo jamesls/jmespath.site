@@ -1,0 +1,5 @@
+.genindex-jumpbox,
+.domainindex-jumpbox {
+  @apply border-t border-b pb-1;
+  border-color: var(--border-genindex-jumpbox);
+}

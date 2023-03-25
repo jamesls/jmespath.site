@@ -1,0 +1,36 @@
+/* For handling theme toggles. */
+body {
+  background: var(--color_bg);
+  color: var(--color_text);
+}
+
+.theme-toggle svg {
+  @apply h-6 w-6;
+}
+
+.theme-icon-when-auto,
+.theme-icon-when-dark,
+.theme-icon-when-light {
+  @apply hidden;
+}
+body[data-theme="auto"] .theme-icon-when-auto {
+  @apply block;
+}
+body[data-theme="dark"] .theme-icon-when-dark {
+  @apply block;
+}
+body[data-theme="light"] .theme-icon-when-light {
+  @apply block;
+}
+
+/* These have `body` to increase specificity. */
+html:not(.dark) {
+  body .only-dark {
+    display: none !important;
+  }
+}
+html.dark {
+  body .only-light {
+    display: none !important;
+  }
+}

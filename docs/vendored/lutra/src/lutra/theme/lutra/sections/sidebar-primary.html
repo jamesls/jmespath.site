@@ -1,0 +1,21 @@
+<div class="site-navigation-container sidebar-sticky">
+  <button id="lutra-site-navigation-collapse-icon" tabindex="0" aria-label="{{ _('Toggle Sidebar') }}"></button>
+  <div id="lutra-primary-sidebar-container" class="sidebar-scroll">
+    {% if sidebars %}
+    {%- for sidebar_section in sidebars %}
+      {%- include sidebar_section %}
+    {%- endfor %}
+    {% else %}
+    {% if pagename != "index" and not lutra_hide_sidebar_back_home %}
+    <div class="docs-header">
+      <a class="back-home-link" href="{{ pathto("index") }}">
+        <span class="back-home-icon"></span><span class="back-home-text">{{ _("Home") }}</span>
+      </a>
+    </div>
+    {% endif %}
+    <div class="toctree-container">
+      {{ lutra_toctree_html }}
+    </div>
+    {% endif %}
+  </div>
+</div>

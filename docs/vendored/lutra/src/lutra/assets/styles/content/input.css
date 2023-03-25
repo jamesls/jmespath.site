@@ -1,0 +1,36 @@
+/* Various search-related inputs */
+.search-form {
+  input[type="text"] {
+    @apply inline-block relative w-full p-2 rounded;
+
+    background: var(--color_bg-search);
+    color: var(--color_text-search);
+    z-index: 1;
+
+    &:hover {
+      background: var(--color_bg-search--hover);
+    }
+    &:focus {
+      background: var(--color_bg-search--focus);
+      color: var(--color_text-search--focus);
+    }
+  }
+  button,
+  [type="button"],
+  [type="reset"],
+  [type="submit"] {
+    @apply inline-block relative p-1 rounded border;
+
+    background: var(--color_bg-search);
+    color: var(--color_text-search);
+    z-index: 1;
+
+    &:hover {
+      background: var(--color_bg-search--hover);
+    }
+    &:focus {
+      background: var(--color_bg-search--focus);
+      color: var(--color_text-search--focus);
+    }
+  }
+}

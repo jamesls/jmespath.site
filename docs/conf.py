@@ -14,7 +14,7 @@ master_doc = 'contents'
 
 # General information about the project.
 project = u'JMESPath'
-copyright = u'2014-2015, James Saryerwinnie'
+copyright = u'2014-2023, James Saryerwinnie'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -49,14 +49,41 @@ exclude_patterns = ['_build']
 # unit titles (such as .. function::).
 #add_module_names = True
 
-html_theme = 'jmespath'
+html_theme = "furo"
 html_title = 'JMESPath'
 html_theme_path = ['_themes']
 
 html_theme_options = {
+    "light_css_variables": {
+        "admonition-font-size": "100%",
+        "admonition-title-font-size": "100%",
+        "color-brand-primary": "#C44536",
+        "color-brand-content": "#00808b",
+        "color-announcement-background": "#711818de",
+        "color-announcement-text": "#fff",
+        "color-background-secondary": "white",
+        "admonition-font-size": "80%",
+    },
+    "font-size--normal": "80%",
+    "font-size": "80%",
+    'admonition-font-size': '80%',
+    "dark_css_variables": {
+        "color-brand-primary": "#eff0ef",
+        "color-brand-content": "#58d3ff",
+        "color-announcement-background": "#711818de",
+        "color-announcement-text": "#fff",
+        "admonition-font-size": "90%",
+    },
     "base_url": "https://jmespath.org",
+    "dark_logo": "img/logo.png",
+    "light_logo": "img/logo-dark.png",
+    "source_repository": "https://github.com/jmespath/jmespath.site/",
+    "sidebar_hide_name": True
 }
 
+pygments_style = "default"
+pygments_dark_style = "monokai"
+html_css_files = ["jmespath.css"]
 
 # Add any paths that contain custom static files (such as style sheets) here,
 # relative to this directory. They are copied after the builtin static files,
@@ -66,9 +93,11 @@ html_static_path = ['_static']
 # Output file base name for HTML help builder.
 htmlhelp_basename = 'JMESPathdoc'
 
-html_sidebars = {
-    'index': ['mainlinks.html', 'searchbox.html'],
-    #'examples': ['logo-sidebar.html', 'searchbox.html'],
-    '**': ['logo-sidebar.html', 'localtoc.html', 'searchbox.html']
+#html_sidebars = {
+#    'index': ['mainlinks.html', 'searchbox.html'],
+#    #'examples': ['logo-sidebar.html', 'searchbox.html'],
+#    '**': ['logo-sidebar.html', 'localtoc.html', 'searchbox.html']
+#}
+html_additional_pages = {
+    "index": "index.html"
 }
-html_additional_pages = {'index': 'index.html'}

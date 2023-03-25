@@ -1,0 +1,8 @@
+@import "tailwindcss/base";
+@import "./scaffold/index.css";
+@import "./content/index.css";
+
+@import "tailwindcss/components";
+@import "./sections/index.css";
+
+@import "tailwindcss/utilities";

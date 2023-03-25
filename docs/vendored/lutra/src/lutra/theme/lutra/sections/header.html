@@ -1,0 +1,11 @@
+<div class="header-container">
+  {% block header_content %}
+  {% include "partials/header/sidebar-collapse.html" with context %}
+  {% include "partials/header/logo.html" with context %}
+  {% include "partials/header/language-selector.html" with context %}
+  {% include "partials/header/version-selector.html" with context %}
+  {% include "partials/header/spacer.html" with context %}
+  {% include "partials/header/search.html" with context %}
+  {% include "partials/header/theme-toggle.html" with context %}
+  {% endblock header_content %}
+</div>

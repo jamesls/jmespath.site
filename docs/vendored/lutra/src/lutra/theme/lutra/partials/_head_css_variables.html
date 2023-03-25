@@ -1,0 +1,30 @@
+{#
+  This is where the base CSS variables are defined.
+#}
+{% macro declare_css_variables(pygments_theme) %}
+--color_bg-code_block: {{ pygments_theme.background }};
+--color_text-code_block: {{ pygments_theme.foreground }};
+{%- endmacro %}
+<style>
+html {
+  --theme-brand: var(--color-{{ theme_brand_color }}-brand);
+
+  --theme-primary: var(--color-{{ theme_primary_color }}-solid);
+  --theme-primary_dark: var(--color-{{ theme_primary_color }}-solid_dark);
+  --theme-primary-highlight: var(--color-{{ theme_primary_color }}-highlight);
+  --theme-primary-target: var(--color-{{ theme_primary_color }}-target);
+  --theme-primary-target_dark: var(--color-{{ theme_primary_color }}-target_dark);
+
+  --theme-secondary: var(--color-{{ theme_secondary_color }}-solid);
+  --theme-secondary_dark: var(--color-{{ theme_secondary_color }}-solid_dark);
+  --theme-secondary-highlight: var(--color-{{ theme_secondary_color }}-highlight);
+  --theme-secondary-target: var(--color-{{ theme_secondary_color }}-target);
+  --theme-secondary-target_dark: var(--color-{{ theme_secondary_color }}-target_dark);
+}
+html:not(.dark) {
+  {{ declare_css_variables(lutra_pygments.light) }}
+}
+html.dark {
+  {{ declare_css_variables(lutra_pygments.dark) }}
+}
+</style>

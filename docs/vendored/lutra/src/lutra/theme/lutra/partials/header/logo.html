@@ -1,0 +1,43 @@
+{% if logo_url and (theme_light_logo or theme_dark_logo) -%}
+  {{ warning(
+      "You have specified the logo through `html_logo` as well as `light_logo`/`dark_logo`. "
+      "Ignoring `light_logo`/`dark_logo`. "
+      "See http://pradyunsg.me/lutra/customisation/logo/"
+  ) }}
+{% elif not (theme_light_logo and theme_dark_logo) and (theme_light_logo or theme_dark_logo) %}
+  {{ warning(
+      "You have specified the logo through only one of `light_logo`/`dark_logo`. "
+      "The generated page might not contain proper logo presentation. "
+      "See http://pradyunsg.me/lutra/customisation/logo/"
+  ) }}
+{%- endif -%}
+
+{%- if (logo_url or (theme_light_logo and theme_dark_logo)) or not theme_header_hide_name -%}
+<a class="header-logo-container" href="{{ pathto('index') }}">
+  {% if logo_url -%}
+  <div class="header-logo-wrapper">
+    <img class="header-logo" src="{{ logo_url }}" alt="Site Logo" />
+  </div>
+  {%- elif (theme_light_logo and theme_dark_logo) -%}
+  <div class="header-logo-wrapper">
+    <img class="header-logo only-light" alt="Site Logo (light mode)" src="
+      {%- if theme_light_logo.startswith('https://') -%}
+        {{ theme_light_logo }}
+      {%- else -%}
+        {{ pathto('_static/' + theme_light_logo, 1) }}
+      {%- endif -%}
+    "/>
+    <img class="header-logo only-dark" alt="Site Logo (dark mode)" src="
+      {%- if theme_dark_logo.startswith('https://') -%}
+        {{ theme_dark_logo }}
+      {%- else -%}
+        {{ pathto('_static/' + theme_dark_logo, 1) }}
+      {%- endif -%}
+    "/>
+  </div>
+  {%- endif %}
+  {%- if not theme_header_hide_name -%}
+  <div class="header-title">{{ docstitle }}</div>
+  {%- endif %}
+</a>
+{%- endif -%}

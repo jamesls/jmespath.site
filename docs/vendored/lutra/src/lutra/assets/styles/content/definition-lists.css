@@ -1,0 +1,81 @@
+/* Definition lists */
+.prose {
+  /* Indent the definitions */
+  dl > dd {
+    @apply pl-8;
+    > :first-child {
+      @apply mt-1;
+    }
+  }
+
+  dl.simple dd > p {
+    @apply my-1;
+  }
+
+  .field-list,
+  .option-list,
+  dl:not([class]),
+  dl.simple,
+  dl.glossary {
+    > dt {
+      @apply font-bold;
+    }
+  }
+
+  /* For better :target highlighting */
+  dl > dt[id] {
+    @apply rounded -mx-1 px-1;
+  }
+
+  /* Side-by-side lists */
+  dl.field-list,
+  dl.footnote {
+    display: grid;
+    grid-template-columns: max-content auto;
+    > dd {
+      @apply pl-3;
+      > :first-child {
+        @apply mt-0;
+      }
+    }
+  }
+
+  /* Footnotes */
+  .footnote-reference {
+    @apply relative;
+    top: -0.5em;
+
+    font-size: 75%;
+    line-height: 0;
+    vertical-align: baseline;
+  }
+
+  dl.footnote {
+    @apply text-xs;
+    dt {
+      @apply m-0;
+
+      &::after {
+        content: ":\a0";
+      }
+
+      > .brackets {
+        &::before {
+          content: "[";
+        }
+        &::after {
+          content: "]";
+        }
+      }
+    }
+  }
+  /* Rule above MyST's footnotes at the end of page */
+  hr.footnotes {
+    @apply mt-12 mb-3;
+  }
+
+  /* Field lists */
+  dl.field-list > dt::after {
+    content: ":";
+  }
+}

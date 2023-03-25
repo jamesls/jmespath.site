@@ -1,0 +1,36 @@
+.prose {
+  ul,
+  ol {
+    @apply my-3; /* same margin as p tags */
+
+    > li {
+      @apply ml-6 my-1;
+    }
+    &.simple li > p {
+      @apply my-1;
+    }
+  }
+  ul {
+    @apply list-disc;
+  }
+
+  ol.arabic {
+    list-style: decimal;
+  }
+
+  ol.loweralpha {
+    list-style: lower-alpha;
+  }
+
+  ol.upperalpha {
+    list-style: upper-alpha;
+  }
+
+  ol.lowerroman {
+    list-style: lower-roman;
+  }
+
+  ol.upperroman {
+    list-style: upper-roman;
+  }
+}

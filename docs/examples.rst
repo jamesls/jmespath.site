@@ -1,6 +1,6 @@
-=================
-JMESPath Examples
-=================
+========
+Examples
+========
 
 
 This page contains numerous examples of JMESPath examples

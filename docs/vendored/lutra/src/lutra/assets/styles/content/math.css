@@ -1,0 +1,21 @@
+div.math {
+  text-align: center;
+  position: relative;
+
+  .headerlink,
+  &:focus-within .headerlink /* Hide from screen readers */ {
+    display: none;
+  }
+
+  &:hover .headerlink {
+    display: inline-block;
+  }
+
+  span.eqno {
+    /* Align to the right of the content, centered vertically */
+    @apply absolute right-2 top-1/2;
+    transform: translate(0, -50%);
+
+    z-index: 1;
+  }
+}

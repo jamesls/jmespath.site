@@ -1,0 +1,256 @@
+/*
+  This file gets parsed by a really dumb script to validate it.
+  So... you can't have multi-line comments in the main styles. Sorry!
+*/
+
+/* Common across light/dark */
+html {
+}
+
+/* Light mode */
+html:not(.dark) {
+  --color_bg: theme("colors.white");
+  --color_bg--transparent: #ffffff00;
+  --color_text: theme("colors.black");
+
+  /* Links */
+  --color_text-link: var(--color_text);
+  --color_text-link--hover: var(--theme-primary);
+  --color_text-link--visited: var(--color_text);
+  --color_text-link--visited--hover: var(--theme-secondary);
+  --color_text-link_underline: var(--theme-primary-highlight);
+  --color_text-link_underline--hover: var(--theme-primary);
+  --color_text-link_underline--visited: var(--theme-secondary-highlight);
+  --color_text-link_underline--visited--hover: var(--theme-secondary);
+
+  /* Header */
+  --color_bg-header: theme("colors.slate.50");
+  --border-header_bottom: theme("colors.gray.100");
+
+  /* Back to top */
+  --shadow-back_to_top: rgba(128, 128, 128, 0.25) 0px 4px 10px 0px;
+
+  /* Hero */
+  --color_text-hero-tagline: theme("colors.neutral.700");
+
+  --border-hero_button: theme("colors.gray.200");
+  --color_bg-hero_button: theme("colors.gray.100");
+  --color_text-hero_button: theme("colors.gray.800");
+
+  --border-hero_button--brand: transparent;
+  --color_bg-hero_button--brand: var(--theme-brand);
+  --color_text-hero_button--brand: theme("colors.white");
+
+  --color_bg-hero_feature: var(--color_bg-header);
+  --color_text-hero-brand: var(--theme-brand);
+
+  /* Footer */
+  --color_bg-related_pages--hover: theme("colors.slate.100");
+  --color_text-related_pages-link: var(--theme-primary);
+  --color_text-related_pages-link--hover: var(--color_text-link--hover);
+  --color_text-related_pages-link_underline: transparent;
+  --color_text-related_pages-link_underline--hover: transparent;
+  --color_text-related_pages-context: theme("colors.gray.500");
+
+  --color_bg-footer: theme("colors.gray.100");
+  --color_text-footer: inherit;
+
+  /* Sidebar links */
+  --color_text-link-sidebar: theme("colors.gray.700");
+  --color_text-link-sidebar--hover: var(--theme-primary);
+  --color_text-link-sidebar--active: var(--theme-primary);
+  --color_text-link-sidebar--active--hover: var(--theme-primary);
+  --color_bg-link-sidebar: transparent;
+  --color_bg-link-sidebar--hover: theme("colors.gray.100");
+  --color_bg-link-sidebar--active: transparent;
+  --color_bg-link-sidebar--active--hover: theme("colors.gray.100");
+
+  /* Sidebar collapse */
+  --color_bg-sidebar_collapse: var(--border-site_sidebar);
+  --color_text-sidebar_collapse: theme("colors.gray.400");
+  --border-sidebar_collapse: var(--border-site_sidebar);
+
+  /* Sidebar stuff */
+  --border-site_sidebar: theme("colors.gray.100");
+
+  --color_text-docs_header: theme("colors.black");
+  --color_text-docs_header-link--hover: var(--theme-primary);
+
+  --color_text-sidebar_prompt: theme("colors.gray.700");
+  --color_text-sidebar_caption: theme("colors.gray.900");
+
+  /* Breadcrumbs */
+  --color_text-breadcrumbs: theme("colors.gray.500");
+
+  /* API */
+  --color_text-api-signature: inherit;
+
+  /* Misc */
+  --color_bg-target: var(--theme-primary-target);
+  --color_text-problematic: theme("colors.red.500");
+  --color_bg-problematic: theme("colors.red.500/30");
+
+  /* Blockquote */
+  --color_text-blockquote: inherit;
+  --color_bg-blockquote: theme("colors.gray.100");
+  --border-blockquote: theme("colors.gray.400");
+
+  /* Code */
+  --border-code_inline: none;
+  --color_bg-code_inline: theme("colors.gray.100");
+  --color_text-code_inline: unset;
+  --border-code_block_caption: theme("colors.gray.300/50");
+
+  /* Table */
+  --color_bg-table-header: theme("colors.neutral.200/50");
+  --border-table: theme("colors.gray.200");
+
+  /* Sidebar */
+  --color_bg-prose_sidebar: theme("colors.gray.50");
+  --border-prose_sidebar: 1px solid theme("colors.gray.200");
+  --border-prose_sidebar_title: 1px solid theme("colors.gray.200");
+
+  /* Admonitions */
+  --color_bg-admonition: transparent;
+  --shadow-admonition: rgba(0, 0, 0, 0.05);
+  --border-admonition: rgba(0, 0, 0, 0.1);
+
+  /* Search */
+  --color_text-search: theme("colors.gray.700");
+  --color_text-search--focus: theme("colors.gray.800");
+  --color_bg-search: #f2f3f5;
+  --color_bg-search--hover: theme("colors.gray.200");
+  --color_bg-search--focus: theme("colors.gray.50");
+  --color_bg-search_overlay: theme("colors.black/50");
+
+  /* Highlights, from search */
+  --color_bg-highlighted: var(--theme-primary-highlight);
+  --color_text-highlighted: inherit;
+
+  /* Index pages */
+  --border-genindex-jumpbox: theme("colors.gray.200");
+}
+
+/* Dark mode */
+html.dark {
+  --color_bg: #0d1116;
+  --color_bg--transparent: #0d111600;
+  --color_text: #c9d1d9;
+
+  /* Links */
+  --color_text-link: var(--color_text);
+  --color_text-link--hover: var(--theme-primary_dark);
+  --color_text-link--visited: var(--color_text);
+  --color_text-link--visited--hover: var(--theme-secondary_dark);
+  --color_text-link_underline: var(--theme-primary-highlight);
+  --color_text-link_underline--hover: var(--theme-primary_dark);
+  --color_text-link_underline--visited: var(--theme-secondary-highlight);
+  --color_text-link_underline--visited--hover: var(--theme-secondary_dark);
+
+  /* Header */
+  --color_bg-header: #171b22;
+  --border-header_bottom: theme("colors.gray.800");
+
+  /* Back to top */
+  --shadow-back_to_top: rgba(16, 16, 16, 1) 0px 4px 10px 0px;
+
+  /* Hero */
+  --color_text-hero-tagline: theme("colors.neutral.400");
+
+  --border-hero_button: theme("colors.gray.600");
+  --color_bg-hero_button: theme("colors.gray.800");
+  --color_text-hero_button: theme("colors.gray.200");
+
+  --border-hero_button--brand: transparent;
+  --color_bg-hero_button--brand: var(--theme-brand);
+  --color_text-hero_button--brand: theme("colors.gray.100");
+
+  --color_bg-hero_feature: var(--color_bg-header);
+  --color_text-hero-brand: var(--theme-brand);
+
+  /* Footer */
+  --color_bg-related_pages--hover: theme("colors.gray.800");
+  --color_text-related_pages-link: var(--theme-primary_dark);
+  --color_text-related_pages-link--hover: var(--theme-primary_dark);
+  --color_text-related_pages-link_underline: transparent;
+  --color_text-related_pages-link_underline--hover: transparent;
+  --color_text-related_pages-context: theme("colors.gray.400");
+
+  --color_bg-footer: #171b22;
+  --color_text-footer: theme("colors.slate.300");
+
+  /* Sidebar links */
+  --color_text-link-sidebar: theme("colors.gray.400");
+  --color_text-link-sidebar--hover: var(--theme-primary_dark);
+  --color_text-link-sidebar--active: var(--theme-primary_dark);
+  --color_text-link-sidebar--active--hover: var(--theme-primary_dark);
+  --color_bg-link-sidebar: transparent;
+  --color_bg-link-sidebar--hover: theme("colors.gray.800/70");
+  --color_bg-link-sidebar--active: transparent;
+  --color_bg-link-sidebar--active--hover: theme("colors.gray.800/70");
+
+  /* Sidebar collapse */
+  --color_bg-sidebar_collapse: var(--border-site_sidebar);
+  --color_text-sidebar_collapse: theme("colors.gray.500");
+  --border-sidebar_collapse: var(--border-site_sidebar);
+
+  /* Sidebar stuff */
+  --border-site_sidebar: theme("colors.gray.800");
+
+  --color_text-docs_header: theme("colors.gray.300");
+  --color_text-docs_header-link--hover: var(--theme-primary_dark);
+
+  --color_text-sidebar_prompt: theme("colors.gray.300");
+  --color_text-sidebar_caption: theme("colors.gray.300");
+
+  /* Breadcrumbs */
+  --color_text-breadcrumbs: theme("colors.gray.400");
+
+  /* API */
+  --color_text-api-signature: inherit;
+
+  /* Misc */
+  --color_bg-target: var(--theme-primary-target_dark);
+  --color_text-problematic: theme("colors.red.500");
+  --color_bg-problematic: theme("colors.red.500/30");
+
+  /* Blockquote */
+  --color_text-blockquote: inherit;
+  --color_bg-blockquote: theme("colors.slate.800/50");
+  --border-blockquote: theme("colors.slate.600");
+
+  /* Code */
+  --border-code_inline: none;
+  --color_bg-code_inline: theme("colors.gray.800");
+  --color_text-code_inline: unset;
+  --border-code_block_caption: theme("colors.gray.600/50");
+
+  /* Table */
+  --color_bg-table-header: #1a1c1e;
+  --border-table: theme("colors.gray.800");
+
+  /* Sidebar */
+  --color_bg-prose_sidebar: theme("colors.zinc.900");
+  --border-prose_sidebar: 1px solid theme("colors.zinc.800");
+  --border-prose_sidebar_title: 1px solid theme("colors.zinc.800");
+
+  /* Admonitions */
+  --color_bg-admonition: theme("colors.gray.900/30");
+  --shadow-admonition: transparent;
+  --border-admonition: theme("colors.slate.800");
+
+  /* Search */
+  --color_text-search: theme("colors.gray.400");
+  --color_text-search--focus: theme("colors.gray.300");
+  --color_bg-search: theme("colors.gray.800");
+  --color_bg-search--hover: theme("colors.gray.700");
+  --color_bg-search--focus: theme("colors.gray.800");
+  --color_bg-search_overlay: theme("colors.zinc.900/80");
+
+  /* Highlights, from search */
+  --color_bg-highlighted: var(--theme-primary-highlight);
+  --color_text-highlighted: inherit;
+
+  /* Index pages */
+  --border-genindex-jumpbox: theme("colors.gray.800");
+}
