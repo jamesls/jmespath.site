@@ -31,9 +31,6 @@
 
   .jpexample,
   .jpexample * {
-    /* If you updated rounding on corners, also update the
-     * .highlight class below.
-     */
     @apply p-2 rounded-lg overflow-auto;
 
     background-color: var(--color_bg-code_block);

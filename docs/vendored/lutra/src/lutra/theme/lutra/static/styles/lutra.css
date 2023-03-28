@@ -1504,19 +1504,16 @@ html {
   margin-top: 0.75rem;
   margin-bottom: 0.75rem; /* same margin as p tags */
 }
-.prose .jpexample,
-  .prose .jpexample * {
-    /* If you updated rounding on corners, also update the
-     * .highlight class below.
-     */
-    overflow: auto;
-    border-radius: 0.5rem;
-    padding: 0.5rem;
+.prose .jpexample, 
+  .prose .jpexample *{
+  overflow: auto;
+  border-radius: 0.5rem;
+  padding: 0.5rem;
 
     background-color: var(--color_bg-code_block);
     color: var(--color_text-code_block);
     border-color: #6b728080;
-  }
+}
 /* Code Blocks */
 .prose pre {
     /* If you updated rounding on corners, also update the
