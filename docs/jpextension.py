@@ -55,6 +55,7 @@ def depart_jmespath_demo_node(self, node):
 
 
 class JPExample(Directive):
+    _EXAMPLES_COUNT = 0
     has_content = True
     required_arguments = 1
     optional_arguments = 0
@@ -65,7 +66,7 @@ class JPExample(Directive):
     }
 
     default_rows = 10
-    default_layout = '1col'
+    default_layout = '2cols'
 
 
     def run(self):
@@ -78,24 +79,24 @@ class JPExample(Directive):
         except ValueError as e:
             raise ValueError("Bad JSON in jpexample: %s" % str(e))
 
-        document = self.state.document
-        env = document.settings.env
-        print("HIHIHIHI")
-        if self.options['layout'] == '2cols':
-            _, filename = env.relfn2path('_static/html/jmespath_2col_demo.html')
-        elif self.options['layout'] == '2cols-expand':
-            _, filename = env.relfn2path('_static/html/jmespath_2col_expand_demo.html')
-        elif self.options['layout'] == '1col':
-            _, filename = env.relfn2path('_static/html/jmespath_1col_demo.html')
-        else:
-            raise ValueError("Unknown layout: %s" % self.options['layout'])
-
-        demo_node = jmespath_demo_node()
-        demo_node.jmespath_expr = expression
-        demo_node.jmespath_data = json_data
-        demo_node.jmespath_options = self.options
-        demo_node.jmespath_html_filename = filename
-        return [demo_node]
+        env = self.state.document.settings.env
+        template_contents = (
+            env.app.builder.templates.environment.loader.get_source(
+                env, 'partials/jmespath-example.html'
+            )[0]
+        )
+        template_obj = env.app.builder.templates.environment.from_string(
+            template_contents)
+        self._EXAMPLES_COUNT += 1
+        params = {
+            'expression': expression,
+            'jmespath_data': json_data,
+            'num_rows': self.options['rows'],
+            'idnum': self._EXAMPLES_COUNT,
+        }
+        rendered = template_obj.render(**params)
+        node = nodes.raw('', rendered, format='html')
+        return [node]
 
     def _populate_defaults(self):
         if 'rows' not in self.options:
@@ -110,5 +111,5 @@ class JPExample(Directive):
 def setup(app):
     app.add_lexer('jp_search', JMESPathSearch)
     app.add_directive('jpexample', JPExample)
-    app.add_node(jmespath_demo_node, html=(visit_jmespath_demo_node,
-                                           depart_jmespath_demo_node))
+    #app.add_node(jmespath_demo_node, html=(visit_jmespath_demo_node,
+    #                                       depart_jmespath_demo_node))

@@ -1,4 +1,10 @@
 .prose {
+  .jpexample {
+    input,
+    textarea {
+      font-size: 0.875em;
+    }
+  }
   code,
   pre {
     font-size: 0.875em;
@@ -21,6 +27,18 @@
   div[class^="highlight-"] {
     @apply flex mx-0;
     @apply my-3; /* same margin as p tags */
+  }
+
+  .jpexample,
+  .jpexample * {
+    /* If you updated rounding on corners, also update the
+     * .highlight class below.
+     */
+    @apply p-2 rounded-lg overflow-auto;
+
+    background-color: var(--color_bg-code_block);
+    color: var(--color_text-code_block);
+    border-color: theme("colors.gray.500/50");
   }
 
   /* Code Blocks */
