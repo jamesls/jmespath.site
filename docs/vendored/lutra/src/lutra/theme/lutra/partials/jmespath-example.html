@@ -1,0 +1,16 @@
+<div class="container mx-auto">
+    <div class="w-full p-6 border-2 border-gray-300 rounded-lg shadow-lg">
+        <div class="mb-4">
+            <input class="jmespath-expression w-full px-3 py-2 border rounded-lg focus:outline-none focus:shadow-outline"
+                   type="text" placeholder='Expression'
+                   value="{{ expression }}">
+        </div>
+        <div class="flex">
+            <textarea class="jmespath-input w-1/2 px-3 py-2 mr-2 border rounded-lg focus:outline-none focus:shadow-outline json-textarea" rows="{{ num_rows }}">
+{{ jmespath_data }}
+            </textarea>
+            <pre class="jmespath-result w-1/2 px-3 py-2 ml-2 border rounded-lg focus:outline-none focus:shadow-outline json-textarea" rows="{{ num_rows }}">
+            </pre>
+        </div>
+    </div>
+</div>
