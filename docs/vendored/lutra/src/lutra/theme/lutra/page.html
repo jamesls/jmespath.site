@@ -60,6 +60,24 @@
 </a>
 {% include "partials/icons.html" %}
 {{ super() }}
+<script>
+  // Setup handlers for jpexample processing.
+  const jpExamples = document.querySelectorAll(".jpexample");
+
+  jpExamples.forEach(jpExample => {
+    const inputElement = jpExample.querySelector(".jpinput");
+    inputElement.addEventListener("input", function() {
+      const expression = this.value;
+      const inputDoc = JSON.parse(jpExample.querySelector(".jpdoc").value);
+      const result = jmespath.search(inputDoc, expression);
+      jpExample.querySelector(".jpresult").value = JSON.stringify(result, null, 2);
+    });
+    // Trigger the event once when the page loads so we can populate the
+    // initial the initial `.jpresult` values.
+    const event = new Event("input");
+    inputElement.dispatchEvent(event);
+  });
+</script>
 {% endblock body %}
 
 {% block footer %}

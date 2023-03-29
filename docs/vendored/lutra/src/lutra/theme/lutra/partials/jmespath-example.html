@@ -1,17 +1,17 @@
 <div class="w-11/12 my-8 mx-auto border-2 rounded-lg jpexample">
     <div class="mb-1">
-        <input class="w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
+        <input class="jpinput w-full px-3 py-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
                type="text"
                placeholder="JMESPath Expression"
                value="{{ expression }}">
     </div>
     <div class="flex">
-        <textarea class="w-1/2 px-3 py-2 mr-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
+        <textarea class="jpdoc w-1/2 px-3 py-2 mr-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
                   rows="{{ num_rows }}"
                   placeholder="Type JSON data">
 {{ jmespath_data }}
         </textarea>
-        <textarea class="w-1/2 px-3 py-2 ml-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
+        <textarea class="jpresult w-1/2 px-3 py-2 ml-2 text-gray-700 border rounded-lg focus:outline-none focus:shadow-outline font-mono"
                   rows="{{ num_rows }}"
                   placeholder="Computed result" readonly></textarea>
     </div>
